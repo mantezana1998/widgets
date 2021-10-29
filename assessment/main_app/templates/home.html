@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=h1, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if widget|length == 0 %}    
+        <h3>No Widgets Exist</h3>      
+    {% else %}  
+    <table>				
+        <tr>				
+          <th>Description</th>	
+          <th>Quantity</th>
+          <th>Delete</th>
+        </tr> 
+    {% for wid in widget %}  
+        <tr>				
+          <td>{{ wid.description }}</td>	
+          <td>{{ wid.quantity }}</td>
+          <td><a href="{% url 'delete' widget.id %}">X</a></td>
+        </tr>   
+    </table> 
+    {% endfor %}
+    {% endif %}
+
+    <h1>Wacky Widgets</h1>
+    <form action="{% url 'add_widget' %}" method="post">
+        {% csrf_token %}
+        {{ forms.as_p }}   
+        <button type="submit">Add Widget</button>
+    </form>
+
+
+</body>
+</html>
