@@ -20,7 +20,7 @@
         <tr>				
           <td>{{ wid.description }}</td>	
           <td>{{ wid.quantity }}</td>
-          <td><a href="{% url 'delete' widget.id %}">X</a></td>
+          <td><a href="{% url 'delete_widget' wid.id %}">X</a></td>
         </tr>   
     </table> 
     {% endfor %}

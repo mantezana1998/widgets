@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect
 from .models import Widget
 from .forms import WidgetForm
+from django.views.generic.edit import DeleteView
 
 
 # Create your views here.
@@ -17,8 +18,8 @@ def add_widget(request):
     if form.is_valid():
         new_widget = form.save(commit=False)
         new_widget.save()
-    return redirect('home.html')
+    return redirect('home')
 
-def delete_widget(request, id):
-    Widget.object.get(id=id).delete()
-    return redirect('/')
+def delete_widget(request, widget_id):
+    Widget.objects.filter(id=widget_id).delete()
+    return redirect('home')
